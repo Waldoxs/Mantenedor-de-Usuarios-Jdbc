@@ -1,6 +1,5 @@
 package org.santos.java.jdbc.util;
 
-import java.lang.constant.Constable;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
