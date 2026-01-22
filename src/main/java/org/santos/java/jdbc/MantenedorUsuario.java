@@ -14,11 +14,11 @@ import java.util.Map;
 public class MantenedorUsuario {
     public static void main(String[] args) {
 
-        try ( Connection conn = ConexionBaseDatos.getInstance()) {
+        try (Connection conn = ConexionBaseDatos.getInstance()) {
             Repositorio<Usuario> repositorio = new UsuarioRepositorioImpl();
             int opcionIndice = 0;
             do {
-                Map<String, Integer> operaciones = new HashMap();
+                Map<String, Integer> operaciones = new HashMap<>();
                 operaciones.put("Actualizar", 1);
                 operaciones.put("Eliminar", 2);
                 operaciones.put("Agregar", 3);
@@ -91,8 +91,5 @@ public class MantenedorUsuario {
             ex.printStackTrace();
         }
 
-
     }
 }
-
-
