@@ -10,18 +10,18 @@ import java.util.List;
 public class UsuarioRepositorioImpl implements Repositorio<Usuario> {
 
     private Connection getConnection() throws SQLException {
-        return ConexionBaseDatos.getIntance();
+        return ConexionBaseDatos.getInstance();
     }
 
     @Override
     public List<Usuario> listar() {
         List<Usuario> usuarios = new ArrayList<>();
-        try (Statement stmt = getConnection().prepareStatement();
-             ResultSet rs = stmt.executeQuery("SELECT * FORM usuarios")
-        ) {
+
+        try ( Statement stmt = getConnection().createStatement();
+              ResultSet rs = stmt.executeQuery("SELECT * FROM usuarios")) {
             while (rs.next()) {
-                Usuario usr = crearUsuario(rs);
-                usuarios.add(usr);
+                Usuario p = crearUsuario(rs);
+                usuarios.add(p);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -51,19 +51,19 @@ public class UsuarioRepositorioImpl implements Repositorio<Usuario> {
     public void guardar(Usuario usuario) {
         String sql;
 
-        if (usuario.getId() != null && usuario.getId() > 0){
+        if (usuario.getId() != null && usuario.getId() > 0) {
             sql = "UPDATE usuarios SET username=?, password=?, email=? WHERE id=?";
-        }else {
+        } else {
             sql = "INSERT INTO usuarios(username, password, email) VALUES(?,?,?)";
         }
 
-        try (PreparedStatement stmt = getConnection().prepareStatement(sql)){
-            stmt.setString(1,usuario.getUsername());
+        try (PreparedStatement stmt = getConnection().prepareStatement(sql)) {
+            stmt.setString(1, usuario.getUsername());
             stmt.setString(2, usuario.getPassword());
             stmt.setString(3, usuario.getEmail());
 
-            if(usuario.getId() != null && usuario.getId() > 0){
-                stmt.setLong(4,usuario.getId());
+            if (usuario.getId() != null && usuario.getId() > 0) {
+                stmt.setLong(4, usuario.getId());
             }
 
         } catch (SQLException e) {
