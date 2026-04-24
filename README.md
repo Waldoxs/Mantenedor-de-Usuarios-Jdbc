@@ -37,7 +37,3 @@ Para garantizar un código limpio, escalable y fácil de mantener, el proyecto s
 * Gestión eficiente de recursos (uso de `try-with-resources` para cerrar conexiones y statements).
 * Mapeo manual de `ResultSet` a objetos de dominio Java.
 * Estructuración de proyectos siguiendo principios de responsabilidad única.
-
----
-**Desarrollado por:** [Oswaldo De Los Santos](https://github.com/OswaldoDS)  
-**Perfil Profesional:** Ingeniero en Control y Automatización | Desarrollador Java Full Stack Jr.
